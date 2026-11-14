@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Estrellas en Ascenso · Cognitivo Gym</title>
+<meta name="description" content="Lecciones de baloncesto para nenes de 5 a 6 años, para hacer con mamá o papá: mira, juega y practica en casa.">
+<meta property="og:title" content="⭐ Estrellas en Ascenso · Cognitivo Gym">
+<meta property="og:description" content="Lección 1: La Zona 2-1-2. Mira el video, juega y practica en casa con mamá o papá.">
+<meta property="og:image" content="https://estrellas.cognogym.com/videos/leccion1-portada.jpg">
+<meta property="og:url" content="https://estrellas.cognogym.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Bebas Neue';src:url(herramientas/BebasNeue.woff) format('woff');font-display:swap}
+:root{--bg:#0a0a0f;--card:#14141c;--line:#2a2a36;--text:#fff;--mute:#8892a0;--orange:#FF6B35;--gold:#FFD700;--grad:linear-gradient(135deg,var(--gold),var(--orange))}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;min-height:100dvh;background:radial-gradient(900px 620px at 50% 0%,#2a1d08 0%,var(--bg) 70%) no-repeat,var(--bg);color:var(--text);font-family:Outfit,system-ui,sans-serif;line-height:1.5;-webkit-text-size-adjust:100%;overflow-x:hidden}
+.wrap{width:min(560px,100% - 32px);margin:0 auto;padding:calc(env(safe-area-inset-top) + 18px) 0 48px;position:relative;z-index:1}
+
+/* rising stars behind the header */
+.cielo{position:absolute;inset:0 0 auto 0;height:520px;overflow:hidden;pointer-events:none;z-index:0}
+.cielo i{position:absolute;bottom:-30px;color:var(--gold);font-style:normal;text-shadow:0 0 10px rgba(255,215,0,.8);animation:sube linear infinite;opacity:0}
+@keyframes sube{0%{transform:translateY(0);opacity:0}12%{opacity:.9}80%{opacity:.6}100%{transform:translateY(-560px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.cielo{display:none}}
+
+header{text-align:center;padding:10px 0 6px}
+.marca{font-family:'Bebas Neue',Impact,sans-serif;font-size:1.35rem;letter-spacing:6px;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sello{display:inline-flex;align-items:center;gap:10px;margin:12px 0 0;padding:8px 18px;border-radius:999px;border:2px solid var(--gold);background:rgba(26,20,10,.85)}
+.sello span{font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(1.6rem,7vw,2.1rem);letter-spacing:.04em;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sello b{color:var(--gold);font-size:1.1rem;animation:late 2.4s ease-in-out infinite}
+.sello b:last-child{animation-delay:1.2s}
+@keyframes late{0%,100%{transform:translateY(2px)}50%{transform:translateY(-5px)}}
+.lead{color:#d6dae2;font-weight:600;margin:14px auto 0;max-width:30em}
+.mis{display:inline-block;margin-top:12px;font-weight:800;font-size:.9rem;color:var(--gold)}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;margin:20px 0}
+.lec-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.lec-h small{font-weight:800;letter-spacing:.14em;color:var(--orange);font-size:.75rem}
+h1,h2{font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;letter-spacing:.03em;margin:0;line-height:1}
+h1{font-size:clamp(2.6rem,12vw,3.4rem);background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+h2{font-size:1.8rem;color:#fff}
+.estrellas-lec{font-size:1.4rem;letter-spacing:4px;color:#3a3a48;white-space:nowrap}
+.estrellas-lec .si{color:var(--gold);text-shadow:0 0 10px rgba(255,215,0,.7)}
+
+.paso{border-top:1px solid var(--line);padding-top:16px;margin-top:16px}
+.paso-h{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.num{flex:none;width:40px;height:40px;border-radius:50%;background:var(--grad);color:#1a0f0f;font-family:'Bebas Neue',Impact,sans-serif;font-size:1.6rem;display:flex;align-items:center;justify-content:center}
+.paso-h h2{flex:1}
+video{display:block;width:100%;max-height:70dvh;border-radius:14px;background:#000;aspect-ratio:9/16;object-fit:contain}
+.btn{display:block;width:100%;text-align:center;text-decoration:none;font:inherit;font-weight:800;font-size:1.05rem;padding:15px;border-radius:14px;border:0;cursor:pointer}
+.btn.grad{background:var(--grad);color:#1a0f0f}
+.hecho{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:10px;font:inherit;font-weight:800;padding:12px;border-radius:12px;border:1.5px solid var(--line);background:transparent;color:var(--mute);cursor:pointer}
+.hecho.on{border-color:var(--gold);color:var(--gold);background:rgba(255,215,0,.08)}
+.casa ol{margin:4px 0 0;padding-left:1.3em;color:#e3e6ec}
+.casa li{margin:0 0 7px}
+.casa b{color:var(--gold)}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:12px 0 2px;text-align:center}
+.mini div{font-size:.74rem;font-weight:700;color:var(--mute)}
+.mini span{display:block;width:30px;height:30px;margin:0 auto 4px;border-radius:50%}
+.premio{display:none;text-align:center;margin-top:16px;padding:16px;border-radius:16px;background:linear-gradient(135deg,rgba(255,215,0,.16),rgba(255,107,53,.16));border:1.5px solid var(--gold)}
+.premio.on{display:block}
+.premio b{display:block;font-family:'Bebas Neue',Impact,sans-serif;font-size:2rem;letter-spacing:.04em;color:var(--gold)}
+
+.padres p{color:#d6dae2;margin:8px 0}
+.padres ul{margin:6px 0 0;padding-left:1.2em;color:#d6dae2}
+.padres li{margin:0 0 6px}
+.padres b{color:#fff}
+
+.prox{display:grid;gap:10px}
+.prox div{display:flex;align-items:center;gap:12px;padding:14px;border-radius:14px;border:1.5px dashed var(--line);color:var(--mute);font-weight:700}
+.prox div span{font-size:1.3rem}
+footer{text-align:center;color:var(--mute);font-size:.8rem;margin-top:24px;line-height:1.7}
+footer a{color:var(--gold);text-decoration:none;font-weight:700}
+</style>
+</head>
+<body>
+<div class="cielo" id="cielo" aria-hidden="true"></div>
+<div class="wrap">
+  <header>
+    <div class="marca">COGNITIVO GYM</div>
+    <div class="sello"><b>★</b><span>ESTRELLAS EN ASCENSO</span><b>★</b></div>
+    <p class="lead">Lecciones de baloncesto para nenes de 5 a 6 años. Se hacen en familia: miras, juegas y practicas en casa con mamá o papá.</p>
+    <span class="mis" id="mis"></span>
+  </header>
+
+  <!-- ─────────────── LECCIÓN 1 ─────────────── -->
+  <section class="card" id="lec1" data-lec="1">
+    <div class="lec-h"><small>LECCIÓN 1</small><span class="estrellas-lec" aria-label="estrellas ganadas"><i>★</i><i>★</i><i>★</i></span></div>
+    <h1>LA ZONA 2-1-2</h1>
+
+    <div class="paso">
+      <div class="paso-h"><div class="num">1</div><h2>MIRA</h2></div>
+      <video id="vid" src="videos/leccion1-zona-212.mp4" poster="videos/leccion1-portada.jpg" controls playsinline preload="metadata"></video>
+      <button class="hecho" type="button" data-p="mira">☆ ¡Lo vi!</button>
+    </div>
+
+    <div class="paso">
+      <div class="paso-h"><div class="num">2</div><h2>JUEGA</h2></div>
+      <a class="btn grad" id="jugar" href="https://zona-212-4to6.onrender.com/" target="_blank" rel="noopener">Jugar Zona 2-1-2 en la tableta →</a>
+      <button class="hecho" type="button" data-p="juega">☆ ¡Lo jugué!</button>
+    </div>
+
+    <div class="paso casa">
+      <div class="paso-h"><div class="num">3</div><h2>EN CASA</h2></div>
+      <p style="margin:0 0 6px;color:#d6dae2">Con mamá o papá · 5 a 10 minutos</p>
+      <ol>
+        <li>Pon <b>5 vasitos</b> (o medias) en el piso en forma <b>2-1-2</b>: dos al frente, uno en el medio, dos atrás.</li>
+        <li>El nene se para en su vasito: <b>esa es su casa</b>.</li>
+        <li>Mamá o papá rueda una <b>bola suave</b> hacia un lado.</li>
+        <li>El nene <b>va a la bola</b> si es el más cerca, o da <b>un pasito</b> hacia ella. Luego, ¡de vuelta a casa!</li>
+        <li>Cambien de vasito para que practique todos los lugares.</li>
+      </ol>
+      <div class="mini" aria-hidden="true">
+        <div><span style="background:#F0B429"></span>frente</div>
+        <div><span style="background:#5EA862"></span>medio</div>
+        <div><span style="background:#F28A3C"></span>atrás</div>
+      </div>
+      <button class="hecho" type="button" data-p="casa">☆ ¡Lo practicamos!</button>
+    </div>
+
+    <div class="premio" id="premio"><b>⭐⭐⭐ ¡ESTRELLA EN ASCENSO!</b>Completaste la Lección 1. ¡Muy bien, campeón!</div>
+  </section>
+
+  <!-- ─────────────── PARA MAMÁ Y PAPÁ ─────────────── -->
+  <section class="card padres">
+    <h2>PARA MAMÁ Y PAPÁ</h2>
+    <p>Cada lección entrena la mente y el cuerpo a la vez:</p>
+    <ul>
+      <li><b>Atención:</b> mirar la bola todo el tiempo.</li>
+      <li><b>Reacción:</b> moverse rápido cuando algo cambia.</li>
+      <li><b>Equipo:</b> cada uno sabe su lugar y ayuda a los demás.</li>
+    </ul>
+    <p><b>Poca pantalla, mucho movimiento:</b> el video dura menos de un minuto y el juego unos minutos. La parte más importante es la práctica en casa, juntos.</p>
+    <p><b>Seguridad:</b> usen un espacio abierto, sin muebles cerca, y una bola suave.</p>
+    <p style="color:var(--mute);font-size:.88rem">Las estrellas se guardan en este equipo. No pedimos nombre, email ni teléfono.</p>
+  </section>
+
+  <!-- ─────────────── PRÓXIMAS ─────────────── -->
+  <section class="card">
+    <h2>PRÓXIMAS LECCIONES</h2>
+    <div class="prox" style="margin-top:12px">
+      <div><span>🔒</span>Lección 2 · ¡Muy pronto!</div>
+      <div><span>🔒</span>Lección 3 · ¡Muy pronto!</div>
+    </div>
+  </section>
+
+  <footer>
+    <a href="https://cognogym.com">cognogym.com</a><br>
+    © 2026 Gostar Digital LLC
+  </footer>
+</div>
+<script>
+(function(){
+  /* rising stars in the header */
+  var cielo = document.getElementById('cielo');
+  for (var i = 0; i < 18; i++) {
+    var s = document.createElement('i'); s.textContent = '★';
+    s.style.left = (Math.random() * 100) + '%';
+    s.style.fontSize = (10 + Math.random() * 16) + 'px';
+    s.style.animationDuration = (5 + Math.random() * 6) + 's';
+    s.style.animationDelay = (-Math.random() * 10) + 's';
+    cielo.appendChild(s);
+  }
+  /* the three steps; each done step is a star, kept on this device only */
+  function leer(){ try { return JSON.parse(localStorage.getItem('ea-lec1') || '{}') } catch (e) { return {} } }
+  function guardar(o){ try { localStorage.setItem('ea-lec1', JSON.stringify(o)) } catch (e) {} }
+  var hecho = leer();
+  var textos = { mira: ['☆ ¡Lo vi!', '★ ¡Lo vi!'], juega: ['☆ ¡Lo jugué!', '★ ¡Lo jugué!'], casa: ['☆ ¡Lo practicamos!', '★ ¡Lo practicamos!'] };
+  function pintar(){
+    var n = 0;
+    document.querySelectorAll('.hecho').forEach(function(b){ var p = b.getAttribute('data-p'), on = !!hecho[p]; if (on) n++; b.classList.toggle('on', on); b.textContent = textos[p][on ? 1 : 0] });
+    document.querySelectorAll('.estrellas-lec i').forEach(function(s, k){ s.classList.toggle('si', k < n) });
+    document.getElementById('premio').classList.toggle('on', n === 3);
+    document.getElementById('mis').textContent = n ? '⭐ ' + n + ' de 3 estrellas en la Lección 1' : '';
+  }
+  document.querySelectorAll('.hecho').forEach(function(b){ b.addEventListener('click', function(){ var p = b.getAttribute('data-p'); hecho[p] = !hecho[p]; guardar(hecho); pintar() }) });
+  /* watching the whole video, or opening the game, earns that star by itself */
+  document.getElementById('vid').addEventListener('ended', function(){ hecho.mira = true; guardar(hecho); pintar() });
+  document.getElementById('jugar').addEventListener('click', function(){ hecho.juega = true; guardar(hecho); pintar() });
+  pintar();
+})();
+</script>
+</body>
+</html>
