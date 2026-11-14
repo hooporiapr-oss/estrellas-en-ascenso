@@ -14,6 +14,13 @@ const srv = http.createServer((q, r) => { let f = path.join(RAIZ, decodeURICompo
   is(await p.locator('.cielo i').count() === 18, 'rising stars in the header');
   const v = await p.evaluate(async () => { const v = document.getElementById('vid'); await new Promise((r) => { if (v.readyState >= 1) r(); else v.onloadedmetadata = r }); return { d: v.duration, w: v.videoWidth, h: v.videoHeight } });
   is(v.d > 55 && v.w === 1080 && v.h === 1920, 'the lesson video loads (' + v.d.toFixed(1) + ' s, ' + v.w + 'x' + v.h + ')');
+  is(await p.locator('.vplay').isVisible(), 'a big play button sits on the video');
+  await p.locator('.vplay').tap(); await p.waitForTimeout(600);
+  const corre = await p.evaluate(() => { const v = document.getElementById('vid'); return !v.paused && v.hasAttribute('controls') });
+  is(corre && !(await p.locator('.vplay').isVisible()), 'tapping it plays the lesson, the button hides and the controls appear');
+  await p.evaluate(() => document.getElementById('vid').pause()); await p.waitForTimeout(200);
+  is(await p.locator('.vplay').isVisible(), 'pausing brings the play button back');
+  await p.evaluate(() => { const v = document.getElementById('vid'); v.currentTime = 0 });
   is(await p.locator('video').getAttribute('poster') === 'videos/leccion1-portada.jpg' && await p.evaluate(() => fetch('videos/leccion1-portada.jpg').then((r) => r.ok)), 'cover image is there');
   is(await p.locator('#jugar').getAttribute('href') === 'juegos/bola-viaja.html?lec=1' && !(await p.locator('#jugar').getAttribute('target')), 'Lección 1 Juega opens the new color-piece game (not the animal one)');
   is(await p.locator('#lec1 .estrellas-lec i.si').count() === 0 && !(await p.locator('#premio1').isVisible()), 'starts with 0 stars');

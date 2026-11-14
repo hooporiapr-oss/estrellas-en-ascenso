@@ -51,6 +51,11 @@ h2{font-size:1.8rem;color:#fff}
 .paso-h{display:flex;align-items:center;gap:12px;margin-bottom:10px}
 .num{flex:none;width:40px;height:40px;border-radius:50%;background:var(--grad);color:#1a0f0f;font-family:'Bebas Neue',Impact,sans-serif;font-size:1.6rem;display:flex;align-items:center;justify-content:center}
 .paso-h h2{flex:1}
+.vbox{position:relative}
+.vplay{position:absolute;inset:0;width:100%;border:0;border-radius:14px;background:rgba(10,10,15,.25);display:flex;align-items:flex-end;padding-bottom:24% !important;justify-content:center;cursor:pointer;padding:0}
+.vplay span{width:104px;height:104px;border-radius:50%;background:linear-gradient(135deg,#FFD700,#FF6B35);color:#1a0f0f;font-size:2.8rem;line-height:104px;text-align:center;padding-left:8px;box-shadow:0 0 0 8px rgba(255,215,0,.22),0 10px 40px rgba(255,140,40,.55);animation:latido 1.6s ease-in-out infinite}
+@keyframes latido{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.vplay[hidden]{display:none}
 video{display:block;width:100%;max-height:70dvh;border-radius:14px;background:#000;aspect-ratio:9/16;object-fit:contain}
 .btn{display:block;width:100%;text-align:center;text-decoration:none;font:inherit;font-weight:800;font-size:1.05rem;padding:15px;border-radius:14px;border:0;cursor:pointer}
 .btn.grad{background:var(--grad);color:#1a0f0f}
@@ -99,7 +104,7 @@ footer a{color:var(--gold);text-decoration:none;font-weight:700}
 
     <div class="paso">
       <div class="paso-h"><div class="num">1</div><h2>MIRA</h2></div>
-      <video id="vid" src="videos/leccion1-zona-212.mp4" poster="videos/leccion1-portada.jpg" controls playsinline preload="metadata"></video>
+      <div class="vbox"><video id="vid" src="videos/leccion1-zona-212.mp4" poster="videos/leccion1-portada.jpg" playsinline preload="metadata"></video><button class="vplay" type="button" aria-label="Ver la lección"><span>▶</span></button></div>
       <button class="hecho" type="button" data-p="mira">☆ ¡Lo vi!</button>
     </div>
 
@@ -231,6 +236,15 @@ footer a{color:var(--gold);text-decoration:none;font-weight:700}
     L.sec.querySelectorAll('.hecho').forEach(function(b){ b.addEventListener('click', function(){ marca(L, b.getAttribute('data-p')) }) });
     var j = L.sec.querySelector('a.jugar'); if (j) j.addEventListener('click', function(){ marca(L, 'juega', true) });
     var v = L.sec.querySelector('video'); if (v) v.addEventListener('ended', function(){ marca(L, 'mira', true) });
+  });
+  /* the big play button over the video: it starts the lesson; the normal
+     controls show once it plays, and the button comes back on pause or at the end */
+  document.querySelectorAll('.vbox').forEach(function(box){
+    var v = box.querySelector('video'), b = box.querySelector('.vplay');
+    b.addEventListener('click', function(){ v.setAttribute('controls', ''); var p = v.play(); if (p && p.catch) p.catch(function(){}) });
+    v.addEventListener('play', function(){ b.hidden = true });
+    v.addEventListener('pause', function(){ if (!v.seeking) b.hidden = false });
+    v.addEventListener('ended', function(){ b.hidden = false });
   });
   pintar();
 })();
