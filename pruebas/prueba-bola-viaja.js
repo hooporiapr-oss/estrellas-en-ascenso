@@ -42,6 +42,9 @@ const FOTOS = process.env.FOTOS || '.';
   // level 1 face is a color, not an animal
   await p.evaluate(() => window.quitToSetup()); await p.locator('#pickLvl button[data-lvl="1"]').click(); await p.locator('#goBtn').click(); await p.clock.runFor(700);
   is(await p.locator('#face span').count() === 1 && !/[🦁🐬🐸🦊🐼]/u.test(await p.locator('#face').innerText()), 'level 1 shows the color to find, not an animal');
+  const p3 = await c.newPage(); await p3.goto(U + '?lec=1'); await p3.waitForTimeout(300);
+  is(/LA ZONA 2-1-2/.test(await p3.locator('#tTitulo').innerText()) && /Lección 1/.test(await p3.locator('#tSub').innerText()) && (await p3.locator('#pickLvl button.on').innerText()).startsWith('1') && await p3.locator('#atras').getAttribute('href') === '../#lec1', '?lec=1: La Zona 2-1-2, level 1, back to Lección 1');
+  is(!/[🦁🐬🐸🦊🐼]/u.test(await p3.content()), '?lec=1: no animals');
   for (const w of [320, 768]) { const cw = await b.newContext({ viewport: { width: w, height: 800 } }); await cw.route(/^https?:\/\/(?!localhost)/, (r) => r.abort()); const pw = await cw.newPage(); await pw.goto(U); await pw.waitForTimeout(200);
     is(await pw.evaluate(() => document.documentElement.scrollWidth - innerWidth) <= 0, 'no sideways scroll at ' + w + ' px'); await cw.close() }
   is(errs.length === 0, 'no page errors' + (errs.length ? ': ' + errs.join(' | ') : ''));

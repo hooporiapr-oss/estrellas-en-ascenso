@@ -15,11 +15,10 @@ const srv = http.createServer((q, r) => { let f = path.join(RAIZ, decodeURICompo
   const v = await p.evaluate(async () => { const v = document.getElementById('vid'); await new Promise((r) => { if (v.readyState >= 1) r(); else v.onloadedmetadata = r }); return { d: v.duration, w: v.videoWidth, h: v.videoHeight } });
   is(v.d > 55 && v.w === 1080 && v.h === 1920, 'the lesson video loads (' + v.d.toFixed(1) + ' s, ' + v.w + 'x' + v.h + ')');
   is(await p.locator('video').getAttribute('poster') === 'videos/leccion1-portada.jpg' && await p.evaluate(() => fetch('videos/leccion1-portada.jpg').then((r) => r.ok)), 'cover image is there');
-  is(await p.locator('#jugar').getAttribute('href') === 'https://zona-212-4to6.onrender.com/' && await p.locator('#jugar').getAttribute('target') === '_blank', 'Juega opens the Zona 2-1-2 game in a new tab');
+  is(await p.locator('#jugar').getAttribute('href') === 'juegos/bola-viaja.html?lec=1' && !(await p.locator('#jugar').getAttribute('target')), 'Lección 1 Juega opens the new color-piece game (not the animal one)');
   is(await p.locator('#lec1 .estrellas-lec i.si').count() === 0 && !(await p.locator('#premio1').isVisible()), 'starts with 0 stars');
   await p.evaluate(() => document.getElementById('vid').dispatchEvent(new Event('ended')));
   is(await p.locator('#lec1 .estrellas-lec i.si').count() === 1 && /★ ¡Lo vi!/.test(await p.locator('[data-p=mira]').innerText()), 'finishing the video earns star 1 by itself');
-  await p.locator('#jugar').evaluate((a) => a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }))).catch(() => {});
   await p.evaluate(() => { const a = document.getElementById('jugar'); a.addEventListener('click', (e) => e.preventDefault(), { once: true }); a.click() });
   is(await p.locator('#lec1 .estrellas-lec i.si').count() === 2, 'opening the game earns star 2');
   await p.locator('#lec1 [data-p=casa]').tap();

@@ -165,11 +165,11 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--ink);
 <!-- ─────────────── teacher sets it up ─────────────── -->
 <div id="setup">
   <div class="s-wrap">
-    <a class="atras" href="../#lec2">← Estrellas en Ascenso</a><br>
+    <a class="atras" id="atras" href="../#lec2">← Estrellas en Ascenso</a><br>
     <span class="sello">★ ESTRELLAS EN ASCENSO ★</span>
     <div class="s-head">
       <div>
-        <div class="s-title">LA BOLA VIAJA</div>
+        <div class="s-title" id="tTitulo">LA BOLA VIAJA</div>
         <div class="s-sub" id="tSub"></div>
       </div>
       <button class="langb" id="langBtn" onclick="toggleLang()">EN</button>
@@ -247,12 +247,16 @@ var G=[
 
 /* ── settings the teacher picks ───────────────────────────────── */
 var nivel=3, rounds=5, voz=true;   /* this lesson starts on La bola viaja */
+/* ?lec=1 opens the same game for Lección 1 (La Zona 2-1-2): level 1,
+   its own title, and the back button returns to Lección 1. */
+var LEC1=/[?&]lec=1(&|$)/.test(location.search);
+if(LEC1) nivel=1;
 var mejor=0, reto=false;   /* reto: the challenge, started from its own button */   /* the longest chain in the challenge, this visit only — nothing is saved */
 
 /* ── two languages, teacher side and voice only ───────────────── */
 var S={
   es:{
-    sub:'Lección 2 · 5 a 6 años',
+    sub:LEC1?'Lección 1 · 5 a 6 años':'Lección 2 · 5 a 6 años',
     rules:'Cuida tu casa.<br>Muévete hacia la bola.<span>Cinco amigos, cada uno con su casa en la cancha. Cuando llega la bola, el más cerca va y los demás dan un paso hacia ella.</span>',
     lvlL:'Nivel',
     lvl:[['1','Encuentra tu casa'],['2','¿Quién va?'],['3','La bola viaja']],
@@ -277,7 +281,7 @@ var S={
     bien:['¡Muy bien!','¡Eso es!','¡Así se defiende!'], casi:'¡Casi!', muro:'¡Eres un muro!'
   },
   en:{
-    sub:'Lesson 2 · ages 5 to 6',
+    sub:LEC1?'Lesson 1 · ages 5 to 6':'Lesson 2 · ages 5 to 6',
     rules:'Guard your house.<br>Move toward the ball.<span>Five friends, each with a house on the court. When the ball comes, the closest one goes and the others take a step toward it.</span>',
     lvlL:'Level',
     lvl:[['1','Find your house'],['2','Who goes?'],['3','The ball travels']],
@@ -578,6 +582,7 @@ window.quitToSetup=function(){
 
 $('langBtn').textContent=LANG==='es'?'EN':'ES';
 document.documentElement.lang=LANG;
+if(LEC1){ $('tTitulo').textContent='LA ZONA 2-1-2'; $('atras').setAttribute('href','../#lec1'); document.title='La Zona 2-1-2 · Estrellas en Ascenso' }
 drawSetup();
 })();
 </script>
