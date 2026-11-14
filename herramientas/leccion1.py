@@ -1,6 +1,7 @@
 # Cognitivo Gym · ESTRELLAS EN ASCENSO (Rising Stars) · Lección 1: LA ZONA 2-1-2 (5 a 6 años)
 #
-#   PIPER=/path/to/piper VOZ=/path/to/es-carlfm-x-low.onnx python3 herramientas/leccion1.py salida.mp4
+#   KOKORO=/path/to/kokoro-multi-lang-v1_0 python3 herramientas/leccion1.py salida.mp4    the voice in use (Latin American)
+#   PIPER=/path/to/piper VOZ=/path/to/es-carlfm-x-low.onnx python3 herramientas/leccion1.py salida.mp4   the first voice (Spain)
 #   MUESTRA=5,12 ... python3 herramientas/leccion1.py x          sample frames only
 #
 # The online-lesson version of the zone drill: it talks to the child (a
@@ -46,7 +47,10 @@ def sintetizar(tmp):
     plan = []; t = 0.6
     for k, (clave, texto) in enumerate(GUION):
         f = os.path.join(tmp, 'l%02d.wav' % k)
-        subprocess.run([piper, '-m', voz, '-f', f, '--length_scale', '1.0', '--sentence_silence', '0.1'], input=texto.encode('utf-8'), check=True, capture_output=True)
+        if os.environ.get('KOKORO'):                    # the Latin American voice (see voz_kokoro.py)
+            import voz_kokoro; voz_kokoro.decir(texto, f)
+        else:
+            subprocess.run([piper, '-m', voz, '-f', f, '--length_scale', '1.0', '--sentence_silence', '0.1'], input=texto.encode('utf-8'), check=True, capture_output=True)
         w = wave.open(f); d = w.getnframes() / w.getframerate(); w.close()
         pre = 1.0 if clave in REP_DE else 0.0          # each rep: the ball flies first, then the coach calls who goes
         plan.append(dict(clave=clave, texto=texto, wav=f, t=t + pre, dur=d))
@@ -228,7 +232,7 @@ def mezcla(plan, DUR, musica, salida_wav):
 def main(salida):
     Z.frame(0)                                       # builds the court backgrounds Z.BG and Z.BG_T
     if os.environ.get('MUESTRA'):
-        plan, DUR = plan_sin_voz() if not os.environ.get('PIPER') else sintetizar(tempfile.mkdtemp())
+        plan, DUR = plan_sin_voz() if not (os.environ.get('PIPER') or os.environ.get('KOKORO')) else sintetizar(tempfile.mkdtemp())
         fr = make(plan, DUR)
         for p in plan: print('%5.1f  %s' % (p['t'], p['texto']))
         for t in map(float, os.environ['MUESTRA'].split(',')): fr(t).save('muestra-%04.1f.jpg' % t, quality=88)
