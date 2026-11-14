@@ -1,6 +1,7 @@
 # Cognitivo Gym · ESTRELLAS EN ASCENSO (Rising Stars) · Lección 1: LA ZONA 2-1-2 (5 a 6 años)
 #
-#   KOKORO=/path/to/kokoro-multi-lang-v1_0 python3 herramientas/leccion1.py salida.mp4    the voice in use (Latin American)
+#   VOZ_MX=/path/to/es_MX-claude-high.onnx python3 herramientas/leccion1.py salida.mp4    the voice in use (Latin American; pip install piper-tts onnxruntime)
+#   KOKORO=/path/to/kokoro-multi-lang-v1_0 python3 herramientas/leccion1.py salida.mp4    another Latin American voice
 #   PIPER=/path/to/piper VOZ=/path/to/es-carlfm-x-low.onnx python3 herramientas/leccion1.py salida.mp4   the first voice (Spain)
 #   MUESTRA=5,12 ... python3 herramientas/leccion1.py x          sample frames only
 #
@@ -47,7 +48,9 @@ def sintetizar(tmp):
     plan = []; t = 0.6
     for k, (clave, texto) in enumerate(GUION):
         f = os.path.join(tmp, 'l%02d.wav' % k)
-        if os.environ.get('KOKORO'):                    # the Latin American voice (see voz_kokoro.py)
+        if os.environ.get('VOZ_MX'):                    # the voice in use: Piper es_MX-claude-high (Latin American)
+            subprocess.run([sys.executable, '-m', 'piper', '-m', os.environ['VOZ_MX'], '-f', f, '--sentence-silence', '0.1'], input=texto.encode('utf-8'), check=True, capture_output=True)
+        elif os.environ.get('KOKORO'):                  # another Latin American voice (see voz_kokoro.py)
             import voz_kokoro; voz_kokoro.decir(texto, f)
         else:
             subprocess.run([piper, '-m', voz, '-f', f, '--length_scale', '1.0', '--sentence_silence', '0.1'], input=texto.encode('utf-8'), check=True, capture_output=True)
@@ -232,7 +235,7 @@ def mezcla(plan, DUR, musica, salida_wav):
 def main(salida):
     Z.frame(0)                                       # builds the court backgrounds Z.BG and Z.BG_T
     if os.environ.get('MUESTRA'):
-        plan, DUR = plan_sin_voz() if not (os.environ.get('PIPER') or os.environ.get('KOKORO')) else sintetizar(tempfile.mkdtemp())
+        plan, DUR = plan_sin_voz() if not (os.environ.get('PIPER') or os.environ.get('KOKORO') or os.environ.get('VOZ_MX')) else sintetizar(tempfile.mkdtemp())
         fr = make(plan, DUR)
         for p in plan: print('%5.1f  %s' % (p['t'], p['texto']))
         for t in map(float, os.environ['MUESTRA'].split(',')): fr(t).save('muestra-%04.1f.jpg' % t, quality=88)
