@@ -66,6 +66,10 @@ video{display:block;width:100%;max-height:70dvh;border-radius:14px;background:#0
 .premio.on{display:block}
 .premio b{display:block;font-family:'Bebas Neue',Impact,sans-serif;font-size:2rem;letter-spacing:.04em;color:var(--gold)}
 
+.sigue{display:block;text-decoration:none;margin-top:16px;padding:16px 18px;border-radius:16px;border:2px solid var(--orange);background:linear-gradient(135deg,rgba(255,215,0,.10),rgba(255,107,53,.14));color:#fff}
+.sigue-k{display:block;font-size:.72rem;font-weight:800;letter-spacing:.14em;color:var(--orange)}
+.sigue-t{display:block;font-family:'Bebas Neue',Impact,sans-serif;font-size:2rem;letter-spacing:.03em;line-height:1.05;color:var(--gold);margin-top:2px}
+.sigue-s{display:block;color:#d6dae2;font-size:.9rem;margin-top:4px}
 .padres p{color:#d6dae2;margin:8px 0}
 .padres ul{margin:6px 0 0;padding-left:1.2em;color:#d6dae2}
 .padres li{margin:0 0 6px}
@@ -101,7 +105,7 @@ footer a{color:var(--gold);text-decoration:none;font-weight:700}
 
     <div class="paso">
       <div class="paso-h"><div class="num">2</div><h2>JUEGA</h2></div>
-      <a class="btn grad" id="jugar" href="https://zona-212-4to6.onrender.com/" target="_blank" rel="noopener">Jugar Zona 2-1-2 en la tableta →</a>
+      <a class="btn grad jugar" id="jugar" data-p="juega" href="https://zona-212-4to6.onrender.com/" target="_blank" rel="noopener">Jugar Zona 2-1-2 en la tableta →</a>
       <button class="hecho" type="button" data-p="juega">☆ ¡Lo jugué!</button>
     </div>
 
@@ -123,7 +127,46 @@ footer a{color:var(--gold);text-decoration:none;font-weight:700}
       <button class="hecho" type="button" data-p="casa">☆ ¡Lo practicamos!</button>
     </div>
 
-    <div class="premio" id="premio"><b>⭐⭐⭐ ¡ESTRELLA EN ASCENSO!</b>Completaste la Lección 1. ¡Muy bien, campeón!</div>
+    <div class="premio" id="premio1"><b>⭐⭐⭐ ¡ESTRELLA EN ASCENSO!</b>Completaste la Lección 1. ¡Muy bien, campeón!</div>
+      <a class="sigue" href="#lec2">
+      <span class="sigue-k">SIGUIENTE · LECCIÓN 2</span>
+      <span class="sigue-t">LA BOLA VIAJA →</span>
+      <span class="sigue-s">La bola viaja por la zona 2-1-2. ¿Recuerdas quién fue?</span>
+    </a>
+  </section>
+
+  <!-- ─────────────── LECCIÓN 2 ─────────────── -->
+  <section class="card" id="lec2" data-lec="2">
+    <div class="lec-h"><small>LECCIÓN 2</small><span class="estrellas-lec" aria-label="estrellas ganadas"><i>★</i><i>★</i><i>★</i></span></div>
+    <h1>LA BOLA VIAJA</h1>
+    <p style="margin:8px 0 0;color:#d6dae2">La bola se mueve de casa en casa. El nene mira bien y repite, en orden, quién fue. Cada vez, un pase más. ¡Sin reloj!</p>
+
+    <div class="paso">
+      <div class="paso-h"><div class="num">1</div><h2>JUEGA</h2></div>
+      <a class="btn grad jugar" href="juegos/bola-viaja.html" data-p="juega">Jugar La Bola Viaja →</a>
+      <button class="hecho" type="button" data-p="juega">☆ ¡Lo jugué!</button>
+    </div>
+
+    <div class="paso casa">
+      <div class="paso-h"><div class="num">2</div><h2>EN CASA</h2></div>
+      <p style="margin:0 0 6px;color:#d6dae2">Con mamá o papá · 5 a 10 minutos</p>
+      <ol>
+        <li>Pon los <b>5 vasitos</b> en forma <b>2-1-2</b>, como en la Lección 1.</li>
+        <li>Mamá o papá pasa la bola de vasito en vasito: <b>dos pases</b>.</li>
+        <li>El nene <b>repite el camino</b>: va a cada vasito en el mismo orden.</li>
+        <li>¿Lo logró? ¡<b>Un pase más</b>! Sigan hasta que se le olvide uno.</li>
+        <li>Cambien: ahora el nene pasa la bola y mamá o papá repite.</li>
+      </ol>
+      <button class="hecho" type="button" data-p="casa">☆ ¡Lo practicamos!</button>
+    </div>
+
+    <div class="paso">
+      <div class="paso-h"><div class="num">3</div><h2>RÉCORD</h2></div>
+      <p style="margin:0;color:#d6dae2">¿Llegó a <b style="color:var(--gold)">5 pases seguidos</b> en el juego o en casa?</p>
+      <button class="hecho" type="button" data-p="record">☆ ¡Llegamos a 5!</button>
+    </div>
+
+    <div class="premio" id="premio2"><b>⭐⭐⭐ ¡ESTRELLA EN ASCENSO!</b>Completaste la Lección 2. ¡Qué memoria, campeón!</div>
   </section>
 
   <!-- ─────────────── PARA MAMÁ Y PAPÁ ─────────────── -->
@@ -144,8 +187,8 @@ footer a{color:var(--gold);text-decoration:none;font-weight:700}
   <section class="card">
     <h2>PRÓXIMAS LECCIONES</h2>
     <div class="prox" style="margin-top:12px">
-      <div><span>🔒</span>Lección 2 · ¡Muy pronto!</div>
       <div><span>🔒</span>Lección 3 · ¡Muy pronto!</div>
+      <div><span>🔒</span>Lección 4 · ¡Muy pronto!</div>
     </div>
   </section>
 
@@ -166,22 +209,29 @@ footer a{color:var(--gold);text-decoration:none;font-weight:700}
     s.style.animationDelay = (-Math.random() * 10) + 's';
     cielo.appendChild(s);
   }
-  /* the three steps; each done step is a star, kept on this device only */
-  function leer(){ try { return JSON.parse(localStorage.getItem('ea-lec1') || '{}') } catch (e) { return {} } }
-  function guardar(o){ try { localStorage.setItem('ea-lec1', JSON.stringify(o)) } catch (e) {} }
-  var hecho = leer();
-  var textos = { mira: ['☆ ¡Lo vi!', '★ ¡Lo vi!'], juega: ['☆ ¡Lo jugué!', '★ ¡Lo jugué!'], casa: ['☆ ¡Lo practicamos!', '★ ¡Lo practicamos!'] };
+  /* each lesson: three steps, each one a star, kept on this device only */
+  var TXT = { mira: ['☆ ¡Lo vi!', '★ ¡Lo vi!'], juega: ['☆ ¡Lo jugué!', '★ ¡Lo jugué!'], casa: ['☆ ¡Lo practicamos!', '★ ¡Lo practicamos!'], record: ['☆ ¡Llegamos a 5!', '★ ¡Llegamos a 5!'] };
+  function leer(n){ try { return JSON.parse(localStorage.getItem('ea-lec' + n) || '{}') } catch (e) { return {} } }
+  function guardar(n, o){ try { localStorage.setItem('ea-lec' + n, JSON.stringify(o)) } catch (e) {} }
+  var LEC = [].slice.call(document.querySelectorAll('section[data-lec]')).map(function(sec){ var n = sec.getAttribute('data-lec'); return { n: n, sec: sec, hecho: leer(n) } });
   function pintar(){
-    var n = 0;
-    document.querySelectorAll('.hecho').forEach(function(b){ var p = b.getAttribute('data-p'), on = !!hecho[p]; if (on) n++; b.classList.toggle('on', on); b.textContent = textos[p][on ? 1 : 0] });
-    document.querySelectorAll('.estrellas-lec i').forEach(function(s, k){ s.classList.toggle('si', k < n) });
-    document.getElementById('premio').classList.toggle('on', n === 3);
-    document.getElementById('mis').textContent = n ? '⭐ ' + n + ' de 3 estrellas en la Lección 1' : '';
+    var resumen = [];
+    LEC.forEach(function(L){
+      var k = 0;
+      L.sec.querySelectorAll('.hecho').forEach(function(b){ var p = b.getAttribute('data-p'), on = !!L.hecho[p]; if (on) k++; b.classList.toggle('on', on); b.textContent = TXT[p][on ? 1 : 0] });
+      L.sec.querySelectorAll('.estrellas-lec i').forEach(function(s, i){ s.classList.toggle('si', i < k) });
+      L.sec.querySelector('.premio').classList.toggle('on', k === 3);
+      if (k) resumen.push(k);
+    });
+    var tot = resumen.reduce(function(a, b){ return a + b }, 0);
+    document.getElementById('mis').textContent = tot ? '⭐ ' + tot + (tot === 1 ? ' estrella ganada' : ' estrellas ganadas') : '';
   }
-  document.querySelectorAll('.hecho').forEach(function(b){ b.addEventListener('click', function(){ var p = b.getAttribute('data-p'); hecho[p] = !hecho[p]; guardar(hecho); pintar() }) });
-  /* watching the whole video, or opening the game, earns that star by itself */
-  document.getElementById('vid').addEventListener('ended', function(){ hecho.mira = true; guardar(hecho); pintar() });
-  document.getElementById('jugar').addEventListener('click', function(){ hecho.juega = true; guardar(hecho); pintar() });
+  function marca(L, p, v){ L.hecho[p] = v === undefined ? !L.hecho[p] : v; guardar(L.n, L.hecho); pintar() }
+  LEC.forEach(function(L){
+    L.sec.querySelectorAll('.hecho').forEach(function(b){ b.addEventListener('click', function(){ marca(L, b.getAttribute('data-p')) }) });
+    var j = L.sec.querySelector('a.jugar'); if (j) j.addEventListener('click', function(){ marca(L, 'juega', true) });
+    var v = L.sec.querySelector('video'); if (v) v.addEventListener('ended', function(){ marca(L, 'mira', true) });
+  });
   pintar();
 })();
 </script>
